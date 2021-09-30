@@ -1,0 +1,20 @@
+# Use root/svsdfsvbsfefsgopiu as user/password credentials
+version: '3.1'
+
+services:
+  prod-zabbix-app-mariadb:
+    image: mariadb
+    container_name: "prod-zabbix-app-mariadb"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: svsdfsvbsfefsgopiu
+    volumes:
+      - /opt/.IMPORTANT/ZABBIX_MARIADB_CONF:/etc/mysql/conf.d
+      - /opt/.IMPORTANT/ZABBIX_MARIADB_DATA:/var/lib/mysql
+
+networks:
+  default:
+    external: true
+    name: bridge_backend
+
+

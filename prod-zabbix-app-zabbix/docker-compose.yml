@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  prod-zabbix-app-zabbix:
+    image: zabbix/zabbix-web-nginx-mysql
+    container_name: "prod-zabbix-app-zabbix"
+    restart: always
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 8081:80
+    environment:
+      DB_SERVER_HOST: backend_mariadb_zabbix
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: root
+      MYSQL_PASSWORD: svsdfsvbsfefsgopiu
+    #volumes:
+      #- /home/itsadm01/.IMPORTANT/zabbix_WORDPRESS:/var/www/html
+
+networks:
+  frontend:
+    external: true
+    name: bridge_frontend
+  backend:
+    external: true
+    name: bridge_backend
+
+
